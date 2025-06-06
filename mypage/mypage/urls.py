@@ -17,7 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from challenges.views import *
 
 urlpatterns = [
+    path("my-page.com/", challenges, name="challenges"),
+    path("my-page.com/posts", challenges_post, name="challenges"),
+    path("my-page.com/posts/python-is-great", challenges_post_description, name="challenges"),
     path("admin/", admin.site.urls),
 ]
