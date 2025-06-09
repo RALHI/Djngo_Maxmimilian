@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
-urlspatter = [
+urlpatterns = [
   path("january" , views.index)
 ]
+
