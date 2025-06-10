@@ -5,6 +5,6 @@ urlpatterns = [
   # path("january" , views.index),
   # path("february" , views.february),
   # path("march" , views.march),
-  path("<month>" , views.monthly_challenge)
+  path("<str:month>" , views.monthly_challenge)
 ]
 

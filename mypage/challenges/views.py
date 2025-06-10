@@ -1,22 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseNotFound
 
-# def index(request):
-#   return HttpResponse("Eat no meat for entire month")
-
-# def february(request):
-#   return HttpResponse("Walk for at least 20 minutes every day")
-
-# def march(request):
-#   return HttpResponse("Learn Django for at least 20 minutes daily")
+month_challenges = {
+  "january": "Eat no meat for entire month",
+  "feruary": "Walk for at least 20 minutes every day",
+  "march": "Learn Django for at least 20 minutes daily",
+  "april": "Eat no meat for entire month",
+  "may": "Walk for at least 20 minutes every day",
+  "june": "Learn Django for at least 20 minutes daily",
+  "july": "Eat no meat for entire month",
+  "august": "Walk for at least 20 minutes every day",
+  "september": "Learn Django for at least 20 minutes daily",
+  "october": "Eat no meat for entire month",
+  "november": "Walk for at least 20 minutes every day",
+  "december": "Learn Django for at least 20 minutes daily",
+}
 
 def monthly_challenge(request,month):
-  if month == "january":
-    text = "Eat no meat for entire month"
-  elif month == "february":
-    text = "Walk for at least 20 minutes every day"
-  elif month == "march":
-    text = "Learn Django for at least 20 minutes daily"
-  else:
-    return HttpResponseNotFound("Input not supported")
-  return HttpResponse(text)
+  try:
+    challenges = month_challenges[month]
+    return HttpResponse(challenges)
+  except:
+    return HttpResponseNotFound("Input month not supported")
