@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 month_challenges = {
   "january": "Eat no meat for entire month",
-  "feruary": "Walk for at least 20 minutes every day",
+  "february": "Walk for at least 20 minutes every day",
   "march": "Learn Django for at least 20 minutes daily",
   "april": "Eat no meat for entire month",
   "may": "Walk for at least 20 minutes every day",
@@ -16,6 +17,14 @@ month_challenges = {
   "december": "Learn Django for at least 20 minutes daily",
 }
 
+# def index(request):
+#   months = list(month_challenges.keys())
+#   for month in months:
+#     # capital_month = month.capitalize()
+#     # month_path = reverse()
+#     list_items += f"<li><a href="">{capital_month}</a></li>"
+#   return HttpResponse(month)
+
 def monthly_challenge_by_number(request,month):
   months = list(month_challenges.keys())
   
@@ -23,7 +32,8 @@ def monthly_challenge_by_number(request,month):
     return HttpResponseNotFound("<h1>Invalid Key</h1>")
   
   redirect_month = months[month-1]
-  return HttpResponseRedirect("/challenges/" + redirect_month)
+  redirect_url = reverse("monthly_challenge", args=[redirect_month])
+  return HttpResponseRedirect(redirect_url)
 
 def monthly_challenge(request,month):
   try:
