@@ -20,7 +20,7 @@ def monthly_challenge_by_number(request,month):
   months = list(month_challenges.keys())
   
   if month > len(months):
-    return HttpResponseNotFound("Invalid Key")
+    return HttpResponseNotFound("<h1>Invalid Key</h1>")
   
   redirect_month = months[month-1]
   return HttpResponseRedirect("/challenges/" + redirect_month)
@@ -31,4 +31,4 @@ def monthly_challenge(request,month):
     response_html = f"<h1>{challenges}</h1>"
     return HttpResponse(response_html)
   except:
-    return HttpResponseNotFound("Input month not supported")
+    return HttpResponseNotFound("<h1>Input month not supported</h1>")
