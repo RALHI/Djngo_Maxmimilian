@@ -17,13 +17,17 @@ month_challenges = {
   "december": "Learn Django for at least 20 minutes daily",
 }
 
-# def index(request):
-#   months = list(month_challenges.keys())
-#   for month in months:
-#     # capital_month = month.capitalize()
-#     # month_path = reverse()
-#     list_items += f"<li><a href="">{capital_month}</a></li>"
-#   return HttpResponse(month)
+def index(request):
+  list_items = ""
+  months = list(month_challenges.keys())
+  
+  for month in months:
+    capital_month = month.capitalize()
+    month_path = reverse("monthly_challenge", args=[month])
+    list_items += f"<li><a href={month_path}>{capital_month}</a></li>"
+    
+    response_list = f"<div><ul>{list_items}</ul></div>"
+  return HttpResponse(response_list)
 
 def monthly_challenge_by_number(request,month):
   months = list(month_challenges.keys())
